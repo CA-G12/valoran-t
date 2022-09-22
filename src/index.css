@@ -6,6 +6,7 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
   -moz-osx-font-smoothing: grayscale;
 }
 
@@ -15,7 +16,7 @@ code {
 }
 
 #logo{
-  font-family: valorant;
+  font-family: 'VALORANT', sans-serif;
   font-size: larger;
   color:#ECE8E1;
 }
@@ -33,7 +34,7 @@ code {
 } 
 #bg{
   background-image: url('../public/footer.png');
-   object-fit:cover;
+   background-size:cover;
    height: 100vh;
    width:60vw;
 }
@@ -96,7 +97,7 @@ code {
 }
 
 .text {
-  font-family: valorant;
+  font-family: 'VALORANT', sans-serif;
   color: rgb(0, 0, 0);
   font-size: 20px;
   position: absolute;
