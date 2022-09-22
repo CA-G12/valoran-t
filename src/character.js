@@ -18,9 +18,7 @@ function Character() {
     console.log(characters);
   }, []);
 
-  if (!characters) {
-    return <div>miss results...</div>;
-  } else {
+
     return (
       <>
         <form>
@@ -40,6 +38,6 @@ function Character() {
       </>
     );
   }
-}
+
 
 export default Character;
