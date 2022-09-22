@@ -1,24 +1,31 @@
 import CharacterShowItems from "./charactersItems";
 import React, { useState, useEffect } from "react";
 
-function Character() {
-  const [charName, setCharName] = useState("");
-  const [characters, setCharacters] = useState([]);
+class Character extends React.Component {
+    state = {
+      characters: null,
+      charName: ""
+    }
 
-  const search = (arr) => {
+   search = (arr) => {
     return arr.filter((ele) =>
-      ele.displayName.toLowerCase().includes(charName)
+      ele.displayName.toLowerCase().includes(this.state.charName)
     );
   };
-  useEffect(() => {
-    fetch("https://valorant-api.com/v1/agents")
+ 
+
+     componentDidMount() {
+       fetch("https://valorant-api.com/v1/agents")
       .then((resp) => resp.json())
-      .then((data) => setCharacters(data.data));
-    console.log(characters);
-  }, []);
+      .then(data => data.data)
+      .then((characters) => this.setState( { characters } ));
+  }
 
 
+  render(){
+    const {characters} = this.state;
     return (
+      characters? 
       <div id="wrapper">
 
         <section className="search">
@@ -28,23 +35,25 @@ function Character() {
           <input
             type="text"
             id="characterBar"
-            onChange={(e) => {
-              setCharName(e.target.value);
-            }}
+            onChange={(e) => this.setState({charName: e.target.value})
+            }
           />
           <button id="searchbutton">Search</button>
         </form>
 
           </div>
         <div className="chara-display">
-          <CharacterShowItems data={search(characters)} />
+          <CharacterShowItems data={this.search(characters)} />
         </div>
         </section>
         <section id="bg">
         </section>
-      </div>
+      </div>:
+      <h2>Loading</h2>
       
     );
+  }
+    
   }
 
 
